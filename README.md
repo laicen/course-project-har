@@ -3,9 +3,9 @@
 ##R Script & Code Book
 
 
-###1. Below is the process description regarding the R script:
+###1. Below is the R script description:
 
-####1.0 Read and download to R the Human Activity Recognition Using Smartphones Data from local files.
+####1.0 Download to R the Human Activity Recognition data from local files.
 
 tsdata <- read.table("Insert directory file path/X_test.txt", sep="")
 
@@ -27,11 +27,11 @@ train <- cbind(trdata, trsub, tractiv)
 
 completedata <- rbind(test,train)
 
-####1.2. Extract the measurements on the mean and standard deviation for each measurement taken from the accelerometer and gyroscope 3-axial raw signals (X,Y,Z) with the corresponding subject and activity.
+####1.2. Extract the mean and standard deviation for each measurement from the merged data sets with the corresponding subject and human activity.
 
 tidydata <- completedata[,c(1:6,121:126,562:563)]
 
-####1.3. Rename the values of the human activity variable: 1 for Walking...6 for Laying.
+####1.3. Rename the values of the human activity variable.
 
 tidydata$V1.2[tidydata$V1.2==1] <- "Walking"
 
@@ -66,14 +66,14 @@ tidydata2 <- ddply(tidydata, c("id","Activity"), summarise, MAccMeanX=mean(AccMe
                    MGyroMeanY=mean(GyroMeanY), MGyroMeanZ=mean(GyroMeanZ), MGyroStdX=mean(GyroStdX),
                    MGyroStdY=mean(GyroStdY), MGyroStdZ=mean(GyroStdZ))
 
-####Create a text file regarding the tidy data set: tidydata2.txt.
+####Create a text file of the tidy data set: tidydata2.txt.
 
 write.table(tidydata2, file="Insert directory file path/tidydata2.txt", row.names=F
 
 ###2. Here are the list of codes and their corresponding descriptions used in the script.
 
 2.1. id = number identification for the subject who participated in the experiment.
-2.2. Activity = human activity (walking, walking upstairs, walking downstairs, sitting, standing, laying) where the subject is engaged in during the experiment.
+2.2. Activity = the human activity (walking, walking upstairs, walking downstairs, sitting, standing, laying) where the subject is engaged in during the experiment.
 2.3. AccMeanX/Y/Z = the mean linear acceleration (m/s^2) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by an accelerometer.
 2.4. AccStdX/Y/Z = the standard deviation linear acceleration (m/s^2) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by an accelerometer.
 2.5. GyroMeanX/Y/Z = the mean angular velocity (rad/s) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by a gyroscope.
