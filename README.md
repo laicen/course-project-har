@@ -73,12 +73,21 @@ write.table(tidydata2, file="Insert directory file path/tidydata2.txt", row.name
 ###2. Here are the list of codes and their corresponding descriptions used in the script.
 
 2.1. id = number identification for the subject who participated in the experiment.
+
 2.2. Activity = the human activity (walking, walking upstairs, walking downstairs, sitting, standing, laying) where the subject is engaged in during the experiment.
+
 2.3. AccMeanX/Y/Z = the mean linear acceleration (m/s^2) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by an accelerometer.
+
 2.4. AccStdX/Y/Z = the standard deviation linear acceleration (m/s^2) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by an accelerometer.
+
 2.5. GyroMeanX/Y/Z = the mean angular velocity (rad/s) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by a gyroscope.
+
 2.6. GyroStdX/Y/Z = the standard deviation angular velocity (rad/s) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by a gyroscope.
+
 2.7. MAccMeanX/Y/Z = the mean of AccMeanX/Y/Z (m/s^2) per subject and human activity.
+
 2.8. MAccStdX/Y/Z = the mean of AccStdX/Y/Z (m/s^2) per subject and human activity.
+
 2.9. MGyroMeanX/Y/Z = the mean of GyroMeanX/Y/Z per subject and human activity.
+
 2.10. MGyroStdX/Y/Z = the mean of GyroStdX/Y/Z per subject and human activity.
