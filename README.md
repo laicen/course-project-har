@@ -1,11 +1,11 @@
-course-project-har
-==================
+#Getting &amp; Cleaning Course Project
+##Human Activity Recognition Data
+##R Script & Code Book
 
-Course Project in Coursera Course Getting &amp; Cleaning Data about Human Activity Recognition
 
-##Below is the process description regarding the R script:
+###1. Below is the process description regarding the R script:
 
-###Read and download to R the Human Activity Recognition Using Smartphones Data from local files.
+####1.0 Read and download to R the Human Activity Recognition Using Smartphones Data from local files.
 
 tsdata <- read.table("Insert directory file path/X_test.txt", sep="")
 
@@ -23,15 +23,15 @@ tractiv <- read.table("Insert directory file path/y_train.txt")
 
 train <- cbind(trdata, trsub, tractiv)
 
-###1. Merge the test and training data sets.
+####1.1. Merge the test and training data sets.
 
 completedata <- rbind(test,train)
 
-###2. Extract the measurements on the mean and standard deviation for each measurement taken from the accelerometer and gyroscope 3-axial raw signals (X,Y,Z) with the corresponding subject and activity.
+####1.2. Extract the measurements on the mean and standard deviation for each measurement taken from the accelerometer and gyroscope 3-axial raw signals (X,Y,Z) with the corresponding subject and activity.
 
 tidydata <- completedata[,c(1:6,121:126,562:563)]
 
-###3. Rename the values of the human activity variable: 1 for Walking...6 for Laying.
+####1.3. Rename the values of the human activity variable: 1 for Walking...6 for Laying.
 
 tidydata$V1.2[tidydata$V1.2==1] <- "Walking"
 
@@ -45,7 +45,7 @@ tidydata$V1.2[tidydata$V1.2==5] <- "Standing"
 
 tidydata$V1.2[tidydata$V1.2==6] <- "Laying"
 
-###4. Label the variables with appropriate variable names: 
+####1.4. Label the variables with appropriate variable names: 
     Acc/Gyro corresponds to data taken from accelerometer/gyroscope,
     Mean/Std for the average/standard deviation of the target value, 
     X/Y/Z for the axis, 
@@ -56,7 +56,7 @@ colnames(tidydata) <- c("AccMeanX", "AccMeanY", "AccMeanZ","AccStdX", "AccStdY",
                         "AccStdZ", "GyroMeanX", "GyroMeanY", "GyroMeanZ", "GyroStdX", "GyroStdY",
                         "GyroStdZ", "id", "Activity")
 
-###5. Make a new tidy data set with the average of each variable for each activity and each subject.
+####1.5. Make a new tidy data set with the average of each variable for each activity and each subject.
 
 library(plyr)
 
@@ -66,6 +66,19 @@ tidydata2 <- ddply(tidydata, c("id","Activity"), summarise, MAccMeanX=mean(AccMe
                    MGyroMeanY=mean(GyroMeanY), MGyroMeanZ=mean(GyroMeanZ), MGyroStdX=mean(GyroStdX),
                    MGyroStdY=mean(GyroStdY), MGyroStdZ=mean(GyroStdZ))
 
-###Create a text file regarding the tidy data set: tidydata2.txt.
+####Create a text file regarding the tidy data set: tidydata2.txt.
 
 write.table(tidydata2, file="Insert directory file path/tidydata2.txt", row.names=F
+
+###2. Here are the list of codes and their corresponding descriptions used in the script.
+
+2.1. id = number identification for the subject who participated in the experiment.
+2.2. Activity = human activity (walking, walking upstairs, walking downstairs, sitting, standing, laying) where the subject is engaged in during the experiment.
+2.3. AccMeanX/Y/Z = the mean linear acceleration (m/s^2) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by an accelerometer.
+2.4. AccStdX/Y/Z = the standard deviation linear acceleration (m/s^2) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by an accelerometer.
+2.5. GyroMeanX/Y/Z = the mean angular velocity (rad/s) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by a gyroscope.
+2.6. GyroStdX/Y/Z = the standard deviation angular velocity (rad/s) corresponding to the X/Y/Z axis vector of a subject doing a human activity measured by a gyroscope.
+2.7. MAccMeanX/Y/Z = the mean of AccMeanX/Y/Z (m/s^2) per subject and human activity.
+2.8. MAccStdX/Y/Z = the mean of AccStdX/Y/Z (m/s^2) per subject and human activity.
+2.9. MGyroMeanX/Y/Z = the mean of GyroMeanX/Y/Z per subject and human activity.
+2.10. MGyroStdX/Y/Z = the mean of GyroStdX/Y/Z per subject and human activity.
